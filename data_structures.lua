@@ -1,3 +1,12 @@
+--[[
+    Estrutura de dados parcialmente implementadas pq (eu sou preguiçoso)
+    não é necessário implementar tudo...
+    Estruturas "implementadas":
+    - Conjuntos
+    - Lista duplamente encadeadas
+    TODO: implementar todas as outras funções caso eu use isso para algo sério
+]]--
+
 Set = {}
 Set.mt = {}
 DoubleLinkedList = {}
@@ -7,7 +16,7 @@ DoubleLinkedList = {}
     uma table semelhante a {array[], atual}, já era o bastante, 
     pois é possivel ter index negativos
     Todo: Montar o comentário de cima pq eu sou um animal
-]]
+]]--
 
 function DoubleLinkedList.new()
     return nil
@@ -60,7 +69,7 @@ function Set.intersction(a,b)
     return result
 end
 
-function Set.contains(a, b)
+function Set.contains_any(a, b)
     for k in pairs(a) do
         if b[k] then
             return true
@@ -69,5 +78,6 @@ function Set.contains(a, b)
     return false
 end
 
-Set.mt.__bor = Set.contains
-Set.mt.__mul = Set.intersction
+
+Set.mt.__bor = Set.contains -- Permite usar a | b ao invés de Set.contais_any(a, b)
+Set.mt.__mul = Set.intersction -- Permite usar a * b ao in vés de Set.intersection(a, b)
