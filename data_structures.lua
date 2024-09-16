@@ -2,30 +2,44 @@ Set = {}
 Set.mt = {}
 DoubleLinkedList = {}
 
+--[[
+    Para todo mundo que decidir ver o meu código, não precisa usar isso,
+    uma table semelhante a {array[], atual}, já era o bastante, 
+    pois é possivel ter index negativos
+    Todo: Montar o comentário de cima pq eu sou um animal
+]]
+
 function DoubleLinkedList.new()
     return nil
 end
 
 function DoubleLinkedList.append_left(list, value)
-    local node = {before = nil, after = list, value = value}
+    local node = {before = nil, next = list, value = value}
     return node
 end
 
 function DoubleLinkedList.append_right(list, value)
-    local node = {before = nil, after = nil, value = value}
+    local node = {before = nil, next = nil, value = value}
     local tmp_list = list
-    while tmp_list.after do
-        tmp_list = tmp_list.after
+    while tmp_list.next do
+        tmp_list = tmp_list.next
     end
-    tmp_list.after = node
+    tmp_list.next = node
     return list
+end
+
+function DoubleLinkedList.free(list)
+    for k, v in pairs(list) do
+        list[k] = nil
+    end
+    return nil
 end
 
 function DoubleLinkedList.print(list)
     local tmp_list = list
     while tmp_list do
         print(tmp_list.value)
-        tmp_list = tmp_list.after
+        tmp_list = tmp_list.next
     end
 end
 
