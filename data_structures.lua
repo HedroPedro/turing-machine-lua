@@ -6,6 +6,7 @@
     - Lista duplamente encadeadas
     TODO: implementar todas as outras funções caso eu use isso para algo sério
 ]]--
+local data_structures = {}
 
 Set = {}
 Set.mt = {}
@@ -62,9 +63,11 @@ function Set.new(t)
 end
 
 function Set.intersction(a,b)
-    local result = Set.new()
+    local result = Set.new({})
     for k in pairs(a) do
-        result[k] = b[k]
+        if b[k] then
+            result[k] = b[k] 
+        end
     end
     return result
 end
@@ -79,5 +82,10 @@ function Set.contains_any(a, b)
 end
 
 
-Set.mt.__bor = Set.contains -- Permite usar a | b ao invés de Set.contais_any(a, b)
+Set.mt.__bor = Set.contains_any -- Permite usar a | b ao invés de Set.contais_any(a, b)
 Set.mt.__mul = Set.intersction -- Permite usar a * b ao in vés de Set.intersection(a, b)
+
+data_structures.Set = Set
+data_structures.DoubleLinkedList = DoubleLinkedList
+
+return data_structures
